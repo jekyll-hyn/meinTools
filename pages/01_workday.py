@@ -5,6 +5,18 @@ import configparser
 from datetime import datetime, timedelta
 import csv
 
+st.set_page_config(layout="wide")
+
+"""
+### 翌営業日計算
+
+「翌営業日計算」ツールは、週末と指定された祝日を考慮して次の営業日を算出するStreamlitアプリです。
+開始日と終了日を選択し、対応する日付範囲の次の営業日を含むCSVファイルを生成します。
+
+* カスタム祝日はconfig.iniファイルに設定可能で、土日と祝日を除いた次の営業日を計算します。
+* 生成されたCSVファイルは、ダウンロードリンクをクリックすることでダウンロード可能です。
+
+"""
 def get_holidays():
     # 创建一个ConfigParser对象
     config = configparser.ConfigParser()
@@ -27,7 +39,6 @@ def get_holidays():
     return holidays
 
 def main():
-    st.header('翌営業日計算')
     start_date = st.date_input('Start Date',value=datetime.strptime("2022-01-01", '%Y-%m-%d').date())
     end_date = st.date_input('End Date',value=datetime.strptime("2022-12-31", '%Y-%m-%d').date())
 
@@ -54,10 +65,8 @@ def generate_csv(start_date, end_date):
     
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="nextworkday.csv">Click to download CSV file</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="nextworkdaylist.csv">Click to download CSV file</a>'
     st.markdown(href, unsafe_allow_html=True)
-
-
 
 if __name__ == '__main__':
     main()

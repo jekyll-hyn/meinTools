@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from st_pages import Page, show_pages, add_page_title
+st.set_page_config(layout="wide")
 
 # Optional -- adds the title and icon to the current page
 add_page_title()
