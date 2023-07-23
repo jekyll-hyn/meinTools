@@ -17,12 +17,3 @@ show_pages(
 
 st.write("医療情報部のホームページです。")
 
-"""
-# st_pages demo
-## Usage
-### Installation
-This is a demo of the `st_pages` module, which allows you to easily create a
-a sidebar with links to different pages in your Streamlit app. It also allows
-a page to have a title and icon, which is shown in the sidebar.
-
-"""
